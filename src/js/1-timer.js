@@ -2,6 +2,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+
 const inputDataTimePicker = document.querySelector('#datetime-picker');
 const startButton = document.querySelector('button');
 const day = document.querySelector('.value[ data-days]');
@@ -19,14 +20,23 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
+
   onClose(selectedDates) {
     console.log(selectedDates[0]);
+
     userSelectedDate = selectedDates[0];
+
     if (userSelectedDate < Date.now()) {
-      iziToast.show({
+      iziToast.error({
+        title: 'Error',
         message: 'Please choose a date in the future',
-        messageColor: '#FFFFFF',
-        backgroundColor: '#B51B1B',
+        titleSize: '16px',
+        titleLineHeight: '1.5',
+        titleColor: '#FFF',
+        messageColor: '#FFF',
+        messageSize: '16px',
+        messageLineHeight: '1.5',
+        backgroundColor: '#EF4040',
         position: 'topRight',
       });
     } else {
@@ -41,8 +51,11 @@ flatpickr(inputDataTimePicker, options);
 
 startButton.addEventListener('click', e => {
   startButton.disabled = true;
+
   difference = userSelectedDate - Date.now();
+
   updateTimer(convertMs(difference));
+
   clearInterval(setIntervalId);
   setIntervalId = setInterval(() => {
     difference -= 1000;
