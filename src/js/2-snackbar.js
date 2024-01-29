@@ -6,8 +6,8 @@ const form = document.querySelector('.form');
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const delay = parseInt(this.elements.delay.value);
-  const state = this.elements.state.value;
+  const delay = parseInt(event.currentTarget.elements.delay.value);
+  const state = event.currentTarget.elements.state.value;
 
   form.reset();
 

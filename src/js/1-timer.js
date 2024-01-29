@@ -41,8 +41,8 @@ const options = {
       });
     } else {
       startButton.disabled = false;
-      btnStart.style.background = '#4E75FF';
-      btnStart.style.color = '#FFF';
+      startButton.style.backgroundColor = '#4E75FF';
+      startButton.style.color = '#FFF';
     }
   },
 };
